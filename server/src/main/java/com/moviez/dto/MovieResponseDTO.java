@@ -9,14 +9,12 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MovieRequestDTO {
+public class MovieResponseDTO {
+
+    private String id;
     private String title;
-
     private String description;
-
     private Integer durationMinutes;
-
     private String language;
-
     private LocalDate releaseDate;
 }

@@ -1,4 +1,7 @@
 package com.moviez.repository;
 
-public class MovieRepository {
+import com.moviez.entity.MovieEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MovieRepository extends JpaRepository<MovieEntity, String> {
 }

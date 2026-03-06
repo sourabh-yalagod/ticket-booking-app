@@ -1,8 +1,8 @@
 package com.moviez.repository;
 
 import com.moviez.entity.BookingEntity;
-import com.moviez.entity.MovieEntity;
+import com.moviez.entity.BookingSeatEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BookingRepository extends JpaRepository<BookingEntity, String> {
+public interface BookingSeatRepository extends JpaRepository<BookingSeatEntity, String> {
 }

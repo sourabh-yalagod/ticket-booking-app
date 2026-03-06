@@ -1,4 +1,4 @@
-package com.moviez.controller;
+package com.moviez.controller.user;
 
 import com.moviez.dto.LoginDto;
 import com.moviez.dto.RegisterDto;
@@ -6,6 +6,7 @@ import com.moviez.service.UserAuthService;
 import com.moviez.utils.CustomResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserAuthController {
     private final UserAuthService userAuthService;
 
+    @PostMapping("/register")
     public ResponseEntity<CustomResponse> register(@RequestBody RegisterDto payload) {
         CustomResponse response = userAuthService.register(payload);
         if (response.isSuccess()) {
@@ -23,6 +25,8 @@ public class UserAuthController {
         }
         return ResponseEntity.badRequest().body(response);
     }
+
+    @PostMapping("/login")
     public ResponseEntity<CustomResponse> login(@RequestBody LoginDto payload) {
         CustomResponse response = userAuthService.login(payload);
         if (response.isSuccess()) {

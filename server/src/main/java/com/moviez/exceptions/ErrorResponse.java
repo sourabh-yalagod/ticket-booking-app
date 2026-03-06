@@ -1,4 +1,4 @@
-package com.moviez.utils;
+package com.moviez.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;

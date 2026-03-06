@@ -1,7 +1,6 @@
 package com.moviez.dto;
 
 import lombok.*;
-import org.hibernate.annotations.SecondaryRow;
 
 import java.time.LocalDateTime;
 
@@ -10,7 +9,7 @@ import java.time.LocalDateTime;
 @Builder
 @Getter
 @Setter
-public class HostShowDto {
+public class CreateShowDto {
     private String theatreId;
     private String movieId;
     private LocalDateTime startTime;
