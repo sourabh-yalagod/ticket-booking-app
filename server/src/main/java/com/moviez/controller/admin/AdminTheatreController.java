@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/admin/theatres")
 @RequiredArgsConstructor
-public class TheatreAdminController {
+public class AdminTheatreController {
 
     private final TheatreService theatreService;
 
