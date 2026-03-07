@@ -1,47 +1,49 @@
 import axios from "axios";
+import { apis } from "../apis";
 
 const baseUrl = import.meta.env.VITE_BASE_URL;
 
 const usePaymentHook = () => {
 
     const handlePayment = async (amount: number): Promise<boolean> => {
-
-        const order = await axios.post(
-            baseUrl + "/api/testing/payment/create-order",
-            {
-                amount,
-                currency: "INR",
-                receipt: "ticket_receipt"
-            }
-        );
-
+        const order = await apis.createPaymentIntent(amount);
+        const data = JSON.parse(order.data)
+        if (!order.isSuccess) return false;
         return new Promise((resolve) => {
 
             const options = {
                 key: "rzp_test_S0vMTGWf7dYe6S",
-                amount: order.data.amount,
+                amount: data.amount,
                 currency: "INR",
                 name: "Movie Ticket",
                 description: "Ticket Booking",
-                order_id: order.data.id,
+                order_id: data.id,
 
                 handler: async function (response: any) {
-
+                    const payload = {
+                        razorpay_payment_id: response.razorpay_payment_id,
+                        razorpay_order_id: response.razorpay_order_id,
+                        razorpay_signature: response.razorpay_signature,
+                    };
                     try {
                         await axios.post(
-                            baseUrl + "/api/testing/payment/verify",
-                            response
+                            baseUrl + "/api/payment/verify",
+                            payload,
+                            {
+                                headers: {
+                                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                                }
+                            }
                         );
-
-                        resolve(true); // ✅ payment success
+                        resolve(true)
                     } catch (error) {
-                        resolve(false); // ❌ verification failed
+                        resolve(false)
                     }
                 },
 
                 modal: {
                     ondismiss: function () {
-                        resolve(false); // ❌ user closed payment window
+                        resolve(false);
                     }
                 },
 

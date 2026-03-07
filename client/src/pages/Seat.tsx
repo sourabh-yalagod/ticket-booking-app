@@ -36,7 +36,6 @@ export default function SeatsPage() {
 
     const searchParam = useSearchParams();
     const pricePerSeat = Number(searchParam[0].get("price"));
-
     // ─── Fetch Seats ────────────────────────────────────────────────────────────
     useEffect(() => {
         if (!showId) return;
@@ -102,7 +101,7 @@ export default function SeatsPage() {
             showSeatIds: Array.from(selectedIds),
             userId,
         });
-
+        console.log(res.data)
         setBooking(false);
 
         if (res.isSuccess) {

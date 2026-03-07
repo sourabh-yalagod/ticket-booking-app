@@ -212,8 +212,8 @@ export default function AdminTheatreReview() {
         );
     }
 
-    const upcomingShows = (theatre.shows ?? []).filter((s) => isUpcoming(s?.startTime));
-    const pastShows = (theatre.shows ?? []).filter((s) => !isUpcoming(s?.startTime));
+    const upcomingShows = (theatre?.shows ?? []).filter((s) => isUpcoming(s?.startTime));
+    const pastShows = (theatre?.shows ?? []).filter((s) => !isUpcoming(s?.startTime));
 
     /* ── Page ── */
     return (
@@ -346,7 +346,7 @@ export default function AdminTheatreReview() {
                                                 <Users className="w-3 h-3" /> {theatre.totalSeats} seats
                                             </span>
                                             <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold">
-                                                <CalendarDays className="w-3 h-3" /> {theatre.shows?.length ?? 0} shows
+                                                <CalendarDays className="w-3 h-3" /> {theatre?.shows?.length ?? 0} shows
                                             </span>
                                         </div>
                                         {/* Mini seat grid */}
@@ -431,7 +431,7 @@ export default function AdminTheatreReview() {
                                         </div>
                                     </div>
 
-                                    {!theatre.shows?.length ? (
+                                    {!theatre?.shows?.length ? (
                                         <div className="flex flex-col items-center py-10 gap-2">
                                             <CalendarDays className="w-8 h-8 text-slate-700" />
                                             <p className="text-slate-600 text-sm">No shows scheduled yet.</p>
@@ -444,7 +444,7 @@ export default function AdminTheatreReview() {
                                         </div>
                                     ) : (
                                         <div className="divide-y divide-white/5">
-                                            {(theatre.shows ?? []).map((show) => {
+                                            {(theatre?.shows ?? []).map((show) => {
                                                 const upcoming = isUpcoming(show?.startTime);
                                                 return (
                                                     <div key={show.id} className="flex items-center gap-4 px-6 py-4">
@@ -494,7 +494,7 @@ export default function AdminTheatreReview() {
                                     <div className="grid grid-cols-2 gap-3">
                                         {[
                                             { label: "Total Seats", value: theatre.totalSeats, color: "text-amber-400", bg: "bg-amber-500/10 border-amber-500/20" },
-                                            { label: "Total Shows", value: theatre.shows?.length ?? 0, color: "text-blue-400", bg: "bg-blue-500/10 border-blue-500/20" },
+                                            { label: "Total Shows", value: theatre?.shows?.length ?? 0, color: "text-blue-400", bg: "bg-blue-500/10 border-blue-500/20" },
                                             { label: "Upcoming Shows", value: upcomingShows.length, color: "text-green-400", bg: "bg-green-500/10 border-green-500/20" },
                                             { label: "Past Shows", value: pastShows.length, color: "text-slate-400", bg: "bg-white/5 border-white/10" },
                                         ].map(({ label, value, color, bg }) => (

@@ -10,7 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/testing/admin/movie")
+@RequestMapping("/api/admin/movies")
 @RequiredArgsConstructor
 public class MovieAdminController {
     private final MovieService movieService;

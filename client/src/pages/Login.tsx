@@ -30,7 +30,9 @@ export default function Login() {
         const res = await apis.login(data);
         console.log(res);
         if (res.isSuccess) {
-            localStorage.setItem("token", res.data?.accessToken);
+            if (!!res?.data?.accessToken) {
+                localStorage.setItem("token", res?.data?.accessToken);
+            }
             console.log(role)
             if (role == "ROLE_ADMIN") navigate("/admin");
             else navigate("/");

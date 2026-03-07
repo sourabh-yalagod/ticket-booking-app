@@ -6,9 +6,20 @@ const axiosInstance = axios.create({
     baseURL: BASE_URL,
     withCredentials: true,
     headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
     },
 });
+
+axiosInstance.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => Promise.reject(error)
+);
 
 type ApiResponse = {
     status: number;
@@ -28,6 +39,7 @@ const apiRequest = async (
             method,
             url,
             data: body,
+
         });
 
         const response = res.data;
@@ -74,41 +86,47 @@ export const apis = {
     getShowSeats: (showId: any) =>
         apiRequest("GET", `/user/shows/${showId}/seats`),
 
+    getUserProfile: (payload: any) =>
+        apiRequest("GET", "/user/" + payload),
+
     // ================= BOOKING =================
 
     createBooking: (payload: any) =>
-        apiRequest("POST", "/testing/booking", payload),
+        apiRequest("POST", "/booking", payload),
+
+    getBookings: (payload: any) =>
+        apiRequest("GET", "/booking/" + payload),
+
+
+    // ================= BOOKING =================
+
+    createPaymentIntent: (amount: any) =>
+        apiRequest("POST", "/payment/create-order", { amount }),
+
 
     // ================= ROLE_ADMIN =================
 
     createMovie: (payload: any) =>
-        apiRequest("POST", "/testing", payload),
-
-    createTheatre: (payload: any) =>
-        apiRequest("POST", "/testing/admin/theatre", payload),
-
-    getBookings: (payload: any) =>
-        apiRequest("GET", "/testing/booking/" + payload),
-
-    getUserProfile: (payload: any) =>
-        apiRequest("GET", "/user/" + payload),
-
-    getTheatres: () =>
-        apiRequest("GET", "/testing/admin/theatre"),
-
-    getTheatreById: (id: string) =>
-        apiRequest("GET", "/testing/admin/theatre/" + id),
-
-    udpateTheatre: (payload: any) =>
-        apiRequest("PUT", "/testing/admin/theatre/" + payload.id, payload),
-
-
-    getMovieById: (id: string) =>
-        apiRequest("GET", "/testing/admin/movie/" + id),
+        apiRequest("POST", "/admin/movies", payload),
 
     updateMovie: (payload: any) =>
-        apiRequest("PUT", "/testing/admin/movie/" + payload?.id, payload),
+        apiRequest("PUT", "/admin/movies/" + payload?.id, payload),
+
+    createTheatre: (payload: any) =>
+        apiRequest("POST", "/admin/theatres", payload),
+
+    getTheatres: () =>
+        apiRequest("GET", "/admin/theatres"),
+
+    getTheatreById: (id: string) =>
+        apiRequest("GET", "/admin/theatres/" + id),
+
+    udpateTheatre: (payload: any) =>
+        apiRequest("PUT", "/admin/theatres/" + payload.id, payload),
+
+    getMovieById: (id: string) =>
+        apiRequest("GET", "/admin/movies/" + id),
 
     createShow: (payload: any) =>
-        apiRequest("POST", "/testing", payload),
+        apiRequest("POST", "/admin/shows/create", payload),
 };

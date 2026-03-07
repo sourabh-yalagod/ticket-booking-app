@@ -10,7 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/testing/admin/theatre")
+@RequestMapping("/api/admin/theatres")
 @RequiredArgsConstructor
 public class TheatreAdminController {
 

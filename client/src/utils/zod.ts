@@ -6,7 +6,7 @@ const registerSchema = z.object({
     name: z.string().min(1, "Name is required"),
     email: z.string().min(1, "Email is required").email("Invalid email address"),
     password: z.string().min(1, "Password is required"),
-    role: z.enum(["USER", "ROLE_ADMIN"]),
+    role: z.enum(["USER", "ADMIN"]),
 });
 
 const loginSchema = z.object({

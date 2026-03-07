@@ -167,7 +167,7 @@ export default function Register() {
               <div className="grid grid-cols-2 gap-3">
                 {([
                   { value: "USER" as Role, label: "User", desc: "Browse & book tickets", Icon: User },
-                  { value: "ROLE_ADMIN" as Role, label: "Admin", desc: "Manage shows & venues", Icon: ShieldCheck },
+                  { value: "ADMIN" as any, label: "Admin", desc: "Manage shows & venues", Icon: ShieldCheck },
                 ]).map(({ value, label, desc, Icon }) => (
                   <button
                     key={value}

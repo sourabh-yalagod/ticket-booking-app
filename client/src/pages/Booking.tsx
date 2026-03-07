@@ -94,7 +94,7 @@ export default function BookingsPage() {
 
     const upcomingCount = bookings.filter((b) => isUpcoming(b.showStartTime)).length;
     const pastCount = bookings.filter((b) => !isUpcoming(b.showStartTime)).length;
-    const totalSpent = bookings.reduce((acc, b) => acc + b.seats.length * price, 0);
+    const totalSpent = bookings.reduce((acc, b) => acc + b.seats.length * b?.price, 0);
 
     return (
         <div className="min-h-screen bg-[#080b14] text-white">
@@ -241,7 +241,7 @@ export default function BookingsPage() {
                             : "flex flex-col gap-3"
                         }>
                             {filtered.map((booking) => (
-                                <BookingCard key={booking.bookingId} booking={booking} view={view} price={price} />
+                                <BookingCard key={booking.bookingId} booking={booking} view={view} price={booking.price} />
                             ))}
                         </div>
                     </>

@@ -191,7 +191,7 @@ function TheatreCard({
     selectedShow: string | null;
     onShowClick: (showId: string, price: number) => void;
 }) {
-    const hasSelectedShow = theatre.shows.some((s) => s.id === selectedShow);
+    const hasSelectedShow = theatre?.shows?.some((s) => s.id === selectedShow);
 
     return (
         <div
@@ -234,7 +234,7 @@ function TheatreCard({
                     Available Shows
                 </p>
                 <div className="flex flex-wrap gap-3">
-                    {theatre.shows.map((show) => {
+                    {theatre?.shows?.map((show) => {
                         const isSelected = selectedShow === show.id;
                         return (
                             <button
