@@ -10,7 +10,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/testing/booking")
+@RequestMapping("/api/booking")
 @RequiredArgsConstructor
 public class BookingController {
     private final BookingService bookingService;

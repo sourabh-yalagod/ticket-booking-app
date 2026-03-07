@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/testing")
+@RequestMapping("/api/admin/shows")
 public class AdminShowController {
     private final ShowService showService;
-
     @PostMapping("/create")
     @Transactional
     public ResponseEntity<CustomResponse> createShow(@RequestBody CreateShowDto payload) throws Exception {

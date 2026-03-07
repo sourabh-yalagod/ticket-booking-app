@@ -22,6 +22,7 @@ public class MovieService {
                 .durationMinutes(request.getDurationMinutes())
                 .language(request.getLanguage())
                 .releaseDate(request.getReleaseDate())
+                .logoUrl(request.getLogoUrl())
                 .build();
 
         MovieEntity saved = movieRepository.save(movie);

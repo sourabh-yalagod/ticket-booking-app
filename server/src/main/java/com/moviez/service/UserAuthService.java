@@ -55,7 +55,7 @@ public class UserAuthService {
         if (!passwordEncoder.matches(payload.getPassword(), user.getPassword())) {
             new Exception("invalid Password...!");
         }
-        String accessToken = jwtUtil.generateJwtToken(user.getEmail(),user.getName(), user.getId(), String.valueOf(user.getRole()), 15);
+        String accessToken = jwtUtil.generateJwtToken(user.getEmail(),user.getName(), user.getId(), String.valueOf(user.getRole()), 60);
         String refreshToken = jwtUtil.generateJwtToken(user.getEmail(), user.getName(),user.getId(), String.valueOf(user.getRole()), 60 * 24 * 7);
 
         map.put("accessToken", accessToken);

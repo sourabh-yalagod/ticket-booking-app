@@ -62,12 +62,10 @@ public class UserReadController {
     public CustomResponse getTheatresByMovie(@PathVariable String movieId) {
 
         List<ShowEntity> shows = showRepository.findByMovieId(movieId);
-
         List<TheatreEntity> theatres = shows.stream()
                 .map(ShowEntity::getTheatre)
                 .distinct()
                 .toList();
-
         return CustomResponse.builder()
                 .message("Theatres fetched successfully")
                 .success(true)

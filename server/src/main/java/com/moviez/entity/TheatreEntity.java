@@ -32,6 +32,5 @@ public class TheatreEntity {
     private List<SeatEntity> seats;
 
     @OneToMany(mappedBy = "theatre", fetch = FetchType.LAZY)
-    @JsonIgnore
     private List<ShowEntity> shows;
 }
